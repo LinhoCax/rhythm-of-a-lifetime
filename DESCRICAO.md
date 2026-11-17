@@ -21,7 +21,7 @@ Cadastrar nova música.
 
 Listar todas as músicas da biblioteca (ordenadas por artista).
 
-Adicionar uma música no início ou no fim da fila.
+Adicionar uma música no início ou no fim da fila.   
 
 Pular para a próxima música da fila.
 
@@ -29,11 +29,14 @@ Mostrar as músicas que estão na fila.
 
 ## Regras
 
-Não é permitido cadastrar duas músicas com o mesmo título e o mesmo artista.
+## Regras
 
-A duração da música deve ser maior que zero.
-
-A biblioteca deve ordenar as músicas em ordem alfabética automaticamente.
+- Não é permitido cadastrar duas músicas com o mesmo título e o mesmo artista.
+- A duração da música deve ser informada apenas em segundos totais (um número inteiro maior que zero, ex: 225 em vez de 3:45).
+- A leitura de nomes de artistas, álbuns e títulos deve suportar espaços (usando `getline`), para não quebrar a entrada de dados.
+- A biblioteca deve ordenar as músicas em ordem alfabética automaticamente pelo nome do Artista. 
+- Em caso de empate no Artista, a ordenação desempata primeiro pelo nome do Álbum e, depois, pelo Título da música.
+- Para evitar erros de digitação, cada música cadastrada recebe um ID (número único). O usuário adiciona uma música à fila digitando esse ID, e não o nome da faixa.
 
 ## Quando algo dá errado
 
