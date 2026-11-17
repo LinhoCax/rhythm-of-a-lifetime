@@ -1,22 +1,27 @@
 #include <iostream>
-#include "Musica.hpp"
+#include "Biblioteca.hpp"
 
 int main() {
-    // Vamos testar com as nossas regras
-    Musica m1(1, "Swim", "BTS", "Korean Single", 174);
-    Musica m2(2, "Born to Die", "Lana Del Rey", "Born to Die", 286);
-    Musica m3(3, "Video Games", "Lana Del Rey", "Born to Die", 282);
+    Biblioteca minhaBib;
 
-    // Testando a ordem lógica do operator<
-    std::cout << "--- Teste de Ordenacao da Etapa 1 ---" << std::endl;
-    
-    if (m1 < m2) {
-        std::cout << "[OK] " << m1.getArtista() << " vem antes de " << m2.getArtista() << std::endl;
+    std::cout << "--- Teste da Etapa 2: A Biblioteca ---" << std::endl;
+
+    // 1. Cadastrar uma música nova
+    if (minhaBib.cadastrar("Video Games", "Lana Del Rey", "Born to Die", 282)) {
+        std::cout << "[OK] Primeira musica cadastrada com sucesso!" << std::endl;
     }
 
-    if (m2 < m3) {
-        std::cout << "[OK] No mesmo album, " << m2.getTitulo() << " vem antes de " << m3.getTitulo() << std::endl;
+    // 2. Tentar cadastrar a MESMA música (deve falhar)
+    if (!minhaBib.cadastrar("Video Games", "Lana Del Rey", "Outro Album", 282)) {
+        std::cout << "[OK] O sistema bloqueou a duplicata corretamente!" << std::endl;
     }
+
+    // 3. Cadastrar uma música diferente
+    if (minhaBib.cadastrar("A Sky Full of Stars", "Coldplay", "Ghost Stories", 268)) {
+        std::cout << "[OK] Segunda musica cadastrada com sucesso!" << std::endl;
+    }
+
+    std::cout << "Total de musicas no acervo: " << minhaBib.getTamanho() << std::endl;
 
     return 0;
 }
