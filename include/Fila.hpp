@@ -4,9 +4,10 @@
 #include <list>
 #include <iostream>
 
-class Fila {
+class Fila
+{
 private:
-    std::list<int> musicasIds; // Guarda apenas os IDs (números)
+    std::list<int> musicasIds;
 
 public:
     void adicionarNoFim(int id);

@@ -6,7 +6,8 @@
 #include <vector>
 #include "Musica.hpp"
 
-class Biblioteca {
+class Biblioteca
+{
 private:
     std::map<int, Musica> acervo;
     int proximoId;
@@ -16,8 +17,10 @@ public:
 
     bool cadastrar(std::string titulo, std::string artista, std::string album, int duracao);
     int getTamanho() const;
-    void listar() const; 
+    void listar() const;
     bool existeMusica(int id) const;
+    void salvar() const;
+    void carregar();
 };
 
 #endif

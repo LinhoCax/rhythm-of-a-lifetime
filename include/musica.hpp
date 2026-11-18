@@ -3,7 +3,8 @@
 
 #include <string>
 
-class Musica {
+class Musica
+{
 private:
     int id;
     std::string titulo;
@@ -20,7 +21,7 @@ public:
     std::string getAlbum() const;
     int getDuracao() const;
 
-    bool operator<(const Musica& outra) const;
+    bool operator<(const Musica &outra) const;
 };
 
 #endif
