@@ -32,7 +32,7 @@ Mostrar as músicas que estão na fila.
 ## Regras
 
 - Não é permitido cadastrar duas músicas com o mesmo título e o mesmo artista.
-- A duração da música deve ser informada apenas em segundos totais (um número inteiro maior que zero, ex: 225 em vez de 3:45).
+- A duração da música pode ser colocada usando o formato MM:SS ou MM.SS. Não serão aceitas musicas com 0 ou < 0 de duração.
 - A leitura de nomes de artistas, álbuns e títulos deve suportar espaços (usando `getline`), para não quebrar a entrada de dados.
 - A biblioteca deve ordenar as músicas em ordem alfabética automaticamente pelo nome do Artista. 
 - Em caso de empate no Artista, a ordenação desempata primeiro pelo nome do Álbum e, depois, pelo Título da música.

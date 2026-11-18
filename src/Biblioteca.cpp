@@ -17,8 +17,14 @@ bool Biblioteca::cadastrar(std::string titulo, std::string artista, std::string 
     return true;
 }
 
+
 int Biblioteca::getTamanho() const {
     return acervo.size();
+}
+
+bool Biblioteca::existeMusica(int id) const {
+    // Se o find() não chegar no "end()", significa que ele encontrou a música
+    return acervo.find(id) != acervo.end();
 }
 
 void Biblioteca::listar() const {
