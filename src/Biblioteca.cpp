@@ -29,7 +29,6 @@ int Biblioteca::getTamanho() const
 
 bool Biblioteca::existeMusica(int id) const
 {
-    // Se o find() não chegar no "end()", significa que ele encontrou a música
     return acervo.find(id) != acervo.end();
 }
 
@@ -112,6 +111,6 @@ void Biblioteca::carregar()
         }
     }
 
-    proximoId = maiorId + 1; // Ajusta o gerador de IDs
+    proximoId = maiorId + 1;
     arquivo.close();
 }

@@ -29,7 +29,6 @@ int main()
         std::cout << "0. Sair" << std::endl;
         std::cout << "Escolha uma opcao: ";
 
-        // Verifica se a entrada não é um número
         if (!(std::cin >> opcao))
         {
             std::cout << "Entrada invalida! Por favor, digite um numero." << std::endl;
