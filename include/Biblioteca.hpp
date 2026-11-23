@@ -19,8 +19,8 @@ public:
     int getTamanho() const;
     void listar() const;
     bool existeMusica(int id) const;
-    void salvar() const;
-    void carregar();
+    const std::map<int, Musica>& getAcervo() const;
+    void inserirCarregada(const Musica& m);
 };
 
 #endif

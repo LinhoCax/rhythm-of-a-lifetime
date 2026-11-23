@@ -50,18 +50,18 @@ Neste projeto, utilizei três estruturas diferentes da STLs, cada uma escolhida 
 
 Utilizei a inteligência artificial (Gemini) como um tutor auxiliar durante o desenvolvimento, focando em estruturar o projeto e resolver problemas de compilação:
 
-* **Planejamento:** No início, usei a IA para entender as regras da atividade e dividir o sistema nas três classes principais (`Musica`, `Biblioteca` e `Fila`), criando o arquivo PLANO.md antes de escrever o código.
+- **Planejamento:** No início, usei a IA para entender as regras da atividade e dividir o sistema nas três classes principais (`Musica`, `Biblioteca` e `Fila`), criando o arquivo PLANO.md antes de escrever o código.
 
-* **Resolução de Bugs:** Pedi ajuda para entender e corrigir um erro de *"undefined reference"* na hora de compilar no terminal (ajustando os comandos do `g++`) e para resolver um loop infinito causado pelo buffer do       `std::cin` na leitura do menu.
+- **Resolução de Bugs:** Pedi ajuda para entender e corrigir um erro de _"undefined reference"_ na hora de compilar no terminal (ajustando os comandos do `g++`) e para resolver um loop infinito causado pelo buffer do `std::cin` na leitura do menu.
 
-* **Testes:** A IA me orientou a criar um script automatizado de testes (o arquivo `entradas.txt` dentro da pasta `exemplos`) e a rodá-lo usando redirecionamento no PowerShell, acelerando muito a validação das regras de negócio.
+- **Testes:** A IA me orientou a criar um script automatizado de testes (o arquivo `entradas.txt` dentro da pasta `exemplos`) e a rodá-lo usando redirecionamento no PowerShell, acelerando muito a validação das regras de negócio.
 
 ## Desafio Extra: Persistência de Dados em Arquivo
 
 Além das funcionalidades obrigatórias, implementei o salvamento e o carregamento automático da biblioteca em um arquivo de texto (`biblioteca.txt`) usando a biblioteca `<fstream>`:
 
-* **Carregamento automático (`carregar()`):** Ao iniciar o programa, o sistema tenta abrir o `biblioteca.txt` com `std::ifstream`. Se o arquivo existir, ele lê cada linha usando `std::getline` com o delimitador ponto-e-vírgula (`;`), separando `ID;Titulo;Artista;Album;Duracao`. Os números são convertidos de volta para inteiro com `std::stoi` e inseridos no `std::map`.
+- **Carregamento automático (`carregar()`):** Ao iniciar o programa, o sistema tenta abrir o `biblioteca.txt` com `std::ifstream`. Se o arquivo existir, ele lê cada linha usando `std::getline` com o delimitador ponto-e-vírgula (`;`), separando `ID;Titulo;Artista;Album;Duracao`. Os números são convertidos de volta para inteiro com `std::stoi` e inseridos no `std::map`.
 
-* **Controle de IDs:** Durante o carregamento, o sistema identifica qual foi o maior ID já salvo e ajusta o `proximoId` (`maiorId + 1`) para garantir que novas músicas cadastradas não sobrescrevam nem dupliquem IDs antigos.
+- **Controle de IDs:** Durante o carregamento, o sistema identifica qual foi o maior ID já salvo e ajusta o `proximoId` (`maiorId + 1`) para garantir que novas músicas cadastradas não sobrescrevam nem dupliquem IDs antigos.
 
-* **Salvamento ao sair (`salvar()`):** Quando o usuário escolhe a opção `0` (Sair), o programa usa `std::ofstream` para gravar todas as músicas do `acervo` de volta no `biblioteca.txt`, preservando os dados para a próxima execução.
+- **Salvamento ao sair (`salvar()`):** Quando o usuário escolhe a opção `0` (Sair), o programa usa `std::ofstream` para gravar todas as músicas do `acervo` de volta no `biblioteca.txt`, preservando os dados para a próxima execução.

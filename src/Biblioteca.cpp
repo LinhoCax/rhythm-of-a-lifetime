@@ -1,6 +1,5 @@
 #include "Biblioteca.hpp"
 #include <vector>
-#include <fstream>
 #include <string>
 #include <algorithm>
 #include <iostream>
@@ -61,56 +60,13 @@ void Biblioteca::listar() const
               << std::endl;
 }
 
-void Biblioteca::salvar() const
-{
-    std::ofstream arquivo("biblioteca.txt");
-
-    if (!arquivo.is_open())
-    {
-        std::cout << "Erro ao tentar salvar o arquivo!" << std::endl;
-        return;
-    }
-
-    for (const auto &par : acervo)
-    {
-        arquivo << par.second.getId() << ";"
-                << par.second.getTitulo() << ";"
-                << par.second.getArtista() << ";"
-                << par.second.getAlbum() << ";"
-                << par.second.getDuracao() << "\n";
-    }
-    arquivo.close();
+const std::map<int, Musica>& Biblioteca::getAcervo() const {
+    return acervo;
 }
 
-void Biblioteca::carregar()
-{
-    std::ifstream arquivo("biblioteca.txt");
-
-    if (!arquivo.is_open())
-        return;
-
-    std::string id_str, titulo, artista, album, duracao_str;
-    int maiorId = 0;
-
-    while (std::getline(arquivo, id_str, ';') &&
-           std::getline(arquivo, titulo, ';') &&
-           std::getline(arquivo, artista, ';') &&
-           std::getline(arquivo, album, ';') &&
-           std::getline(arquivo, duracao_str))
-    {
-
-        int id = std::stoi(id_str);
-        int duracao = std::stoi(duracao_str);
-
-        Musica m(id, titulo, artista, album, duracao);
-        acervo.insert({id, m});
-
-        if (id > maiorId)
-        {
-            maiorId = id;
-        }
+void Biblioteca::inserirCarregada(const Musica& m) {
+    acervo.insert({m.getId(), m});
+    if (m.getId() >= proximoId) {
+        proximoId = m.getId() + 1;
     }
-
-    proximoId = maiorId + 1;
-    arquivo.close();
 }

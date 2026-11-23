@@ -2,6 +2,7 @@
 #include <string>
 #include "Biblioteca.hpp"
 #include "Fila.hpp"
+#include "Arquivo.hpp"
 
 void limparBuffer()
 {
@@ -13,7 +14,8 @@ int main()
 {
     Biblioteca bib;
     Fila fila;
-    bib.carregar();
+    Arquivo arq;
+    arq.carregar(bib, "biblioteca.txt");
 
     int opcao = -1;
 
@@ -112,7 +114,7 @@ int main()
         else if (opcao == 0)
         {
             std::cout << "Salvando a biblioteca..." << std::endl;
-            bib.salvar(); // <--- SALVA NO ARQUIVO ANTES DE FECHAR
+            arq.salvar(bib, "biblioteca.txt");
             std::cout << "Ate logo!" << std::endl;
         }
         else
