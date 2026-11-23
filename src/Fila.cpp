@@ -1,4 +1,5 @@
 #include "Fila.hpp"
+#include <stdexcept>
 
 void Fila::adicionarNoFim(int id)
 {
@@ -14,8 +15,7 @@ void Fila::pularMusica()
 {
     if (musicasIds.empty())
     {
-        std::cout << "A fila ja esta vazia." << std::endl;
-        return;
+        throw std::runtime_error("A fila esta vazia. Nao ha musica para pular.");
     }
     musicasIds.pop_front();
 }

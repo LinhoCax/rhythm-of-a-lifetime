@@ -2,16 +2,19 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <stdexcept>
 
-void Arquivo::salvar(const Biblioteca& bib, const std::string& nomeArquivo) const {
+void Arquivo::salvar(const Biblioteca &bib, const std::string &nomeArquivo) const
+{
     std::ofstream arquivo(nomeArquivo);
 
-    if (!arquivo.is_open()) {
-        std::cout << "Erro ao tentar salvar o arquivo!" << std::endl;
-        return;
+    if (!arquivo.is_open())
+    {
+        throw std::runtime_error("Nao foi possivel abrir o arquivo para salvar: " + nomeArquivo);
     }
 
-    for (const auto& par : bib.getAcervo()) {
+    for (const auto &par : bib.getAcervo())
+    {
         arquivo << par.second.getId() << ";"
                 << par.second.getTitulo() << ";"
                 << par.second.getArtista() << ";"
@@ -21,11 +24,13 @@ void Arquivo::salvar(const Biblioteca& bib, const std::string& nomeArquivo) cons
     arquivo.close();
 }
 
-void Arquivo::carregar(Biblioteca& bib, const std::string& nomeArquivo) const {
+void Arquivo::carregar(Biblioteca &bib, const std::string &nomeArquivo) const
+{
     std::ifstream arquivo(nomeArquivo);
 
     // Se o arquivo ainda nao existe, o sistema comeca vazio
-    if (!arquivo.is_open()) {
+    if (!arquivo.is_open())
+    {
         return;
     }
 
@@ -35,7 +40,8 @@ void Arquivo::carregar(Biblioteca& bib, const std::string& nomeArquivo) const {
            std::getline(arquivo, titulo, ';') &&
            std::getline(arquivo, artista, ';') &&
            std::getline(arquivo, album, ';') &&
-           std::getline(arquivo, duracao_str)) {
+           std::getline(arquivo, duracao_str))
+    {
 
         int id = std::stoi(id_str);
         int duracao = std::stoi(duracao_str);

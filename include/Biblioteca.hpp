@@ -15,12 +15,12 @@ private:
 public:
     Biblioteca();
 
-    bool cadastrar(std::string titulo, std::string artista, std::string album, int duracao);
+    void cadastrar(std::string titulo, std::string artista, std::string album, int duracao);
     int getTamanho() const;
     void listar() const;
     bool existeMusica(int id) const;
-    const std::map<int, Musica>& getAcervo() const;
-    void inserirCarregada(const Musica& m);
+    const std::map<int, Musica> &getAcervo() const;
+    void inserirCarregada(const Musica &m);
 };
 
 #endif

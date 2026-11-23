@@ -3,22 +3,35 @@
 #include <string>
 #include <algorithm>
 #include <iostream>
+#include <stdexcept>
 
 Biblioteca::Biblioteca() : proximoId(1) {}
 
-bool Biblioteca::cadastrar(std::string titulo, std::string artista, std::string album, int duracao)
+void Biblioteca::cadastrar(std::string titulo, std::string artista, std::string album, int duracao)
 {
+    if (titulo.empty() || artista.empty() || album.empty())
+    {
+        throw std::invalid_argument("Titulo, artista e album nao podem ser vazios.");
+    }
+
+    if (duracao <= 0)
+    {
+        throw std::invalid_argument("A duracao deve ser maior que zero.");
+    }
+
     for (const auto &par : acervo)
     {
-        if (par.second.getTitulo() == titulo && par.second.getArtista() == artista)
+        if (par.second.getTitulo() == titulo &&
+            par.second.getArtista() == artista &&
+            par.second.getAlbum() == album)
         {
-            return false;
+            throw std::invalid_argument("Essa musica ja existe na biblioteca.");
         }
     }
-    Musica novaMusica(proximoId, titulo, artista, album, duracao);
-    acervo.insert({proximoId, novaMusica});
+
+    Musica nova(proximoId, titulo, artista, album, duracao);
+    acervo.insert({proximoId, nova});
     proximoId++;
-    return true;
 }
 
 int Biblioteca::getTamanho() const
@@ -60,13 +73,16 @@ void Biblioteca::listar() const
               << std::endl;
 }
 
-const std::map<int, Musica>& Biblioteca::getAcervo() const {
+const std::map<int, Musica> &Biblioteca::getAcervo() const
+{
     return acervo;
 }
 
-void Biblioteca::inserirCarregada(const Musica& m) {
+void Biblioteca::inserirCarregada(const Musica &m)
+{
     acervo.insert({m.getId(), m});
-    if (m.getId() >= proximoId) {
+    if (m.getId() >= proximoId)
+    {
         proximoId = m.getId() + 1;
     }
 }

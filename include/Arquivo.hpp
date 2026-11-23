@@ -4,10 +4,11 @@
 #include <string>
 #include "Biblioteca.hpp"
 
-class Arquivo {
+class Arquivo
+{
 public:
-    void salvar(const Biblioteca& bib, const std::string& nomeArquivo) const;
-    void carregar(Biblioteca& bib, const std::string& nomeArquivo) const;
+    void salvar(const Biblioteca &bib, const std::string &nomeArquivo) const;
+    void carregar(Biblioteca &bib, const std::string &nomeArquivo) const;
 };
 
 #endif
